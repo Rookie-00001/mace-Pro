@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<link rel="preload" href="heart.png" as="image" type="image/png">
+    <meta charset="UTF-8">
+    <title>MACE风险预测模型系统</title>
+	<link rel="icon" type="image/png" href="heart.png">
+	<link rel="apple-touch-icon" href="heart.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --medical-blue: #2c7be5;
+            --medical-dark: #12263f;
+            --medical-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-color: #f5f7fa;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--medical-blue), #1a5cb8);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .model-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .model-card .card-body {
+            padding: 2rem;
+        }
+        .model-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--medical-blue);
+        }
+        .card-title {
+            color: var(--medical-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .card-text {
+            color: #6e84a3;
+        }
+        .footer {
+            background-color: var(--medical-dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--medical-blue);
+        }
+        .container {
+            max-width: 1140px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页眉 -->
+    <header class="header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">MACE风险预测模型系统</h1>
+            <p class="lead">基于多参数的综合MACE风险评估工具</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container">
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto text-center">
+                <ul class="nav nav-pills justify-content-center mb-4" id="modelTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="all-tab" data-bs-toggle="pill" data-bs-target="#all" type="button" role="tab">全部模型</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="basic-tab" data-bs-toggle="pill" data-bs-target="#basic" type="button" role="tab">基础模型</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="advanced-tab" data-bs-toggle="pill" data-bs-target="#advanced" type="button" role="tab">其他模型</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content" id="modelTabsContent">
+            <!-- 全部模型 -->
+            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="model-card card">
+                            <div class="card-body text-center">
+                                <div class="model-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">基础预测模型</h3>
+                                <p class="card-text">基于钙化体积、狭窄程度和FAI指标的基础风险评估模型</p>
+                                <a href="basic.html" class="btn btn-primary">使用模型</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="model-card card">
+                            <div class="card-body text-center">
+                                <div class="model-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                                        <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">血糖预测模型</h3>
+                                <p class="card-text">在基础模型上增加血糖指标，提升实际性的风险评估精度</p>
+                                <a href="glu.html" class="btn btn-primary">使用模型</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="model-card card">
+                            <div class="card-body text-center">
+                                <div class="model-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">组学预测模型</h3>
+                                <p class="card-text">整合影像组学特征的联合预测模型，提供更精准的风险评估</p>
+                                <a href="omi.html" class="btn btn-primary">使用模型</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 基础模型 -->
+            <div class="tab-pane fade" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="model-card card">
+                            <div class="card-body text-center">
+                                <div class="model-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">基础预测模型</h3>
+                                <p class="card-text">基于钙化体积、狭窄程度和FAI指标的基础风险评估模型</p>
+                                <a href="basic.html" class="btn btn-primary">使用模型</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 高级模型 -->
+            <div class="tab-pane fade" id="advanced" role="tabpanel" aria-labelledby="advanced-tab">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="model-card card">
+                            <div class="card-body text-center">
+                                <div class="model-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                                        <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">血糖预测模型</h3>
+                                <p class="card-text">在基础模型上增加血糖指标，提升实际性的风险评估精度</p>
+                                <a href="glu.html" class="btn btn-primary">使用模型</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="model-card card">
+                            <div class="card-body text-center">
+                                <div class="model-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">组学预测模型</h3>
+                                <p class="card-text">整合影像组学特征的联合预测模型，提供更精准的风险评估</p>
+                                <a href="omi.html" class="btn btn-primary">使用模型</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer text-center">
+        <div class="container">
+            <p class="mb-1">MACE风险预测系统 &copy; 2025</p>
+            <p class="mb-0">仅供医疗专业人员使用</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
