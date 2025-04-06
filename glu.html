@@ -319,7 +319,7 @@ function updateFinalResults(allValid, calcVol, stenosis, fai, bloodSugar) {
                           coefficients.stenosis * stenosis +
                           coefficients.fai * fai +
                           coefficients.bloodSugar * bloodSugar;
-                el.textContent = (100 / (1 + Math.exp(-lp))).toFixed(2) + '%';
+                el.textContent = (100 / (1 + Math.exp(-lp))).toFixed(2) ;
             }
         } else {
             el.textContent = '--';
