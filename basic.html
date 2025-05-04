@@ -3,10 +3,12 @@
 <head>
 	<link rel="preload" href="heart.png" as="image" type="image/png">
     <meta charset="UTF-8">
-    <title>基础预测模型</title>
+    <title data-lang-key="basicPageTitle">基础预测模型</title>
 	<link rel="icon" type="image/png" href="heart.png">
 	<link rel="apple-touch-icon" href="heart.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入语言文件 -->
+    <script src="language.js"></script>
     <style>
         .container { 
             max-width: 800px; 
@@ -14,7 +16,7 @@
             padding: 20px; 
         }
         .input-group-text { 
-            width: 160px; 
+            width: 200px; 
             background: #f8f9fa; 
         }
         .result-card { 
@@ -99,88 +101,88 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2c7be5;">
     <div class="container py-1">  
-        <a class="navbar-brand fs-4 fw-bold py-0" href="index.html">MACE风险预测系统</a>  
+        <a class="navbar-brand fs-4 fw-bold py-0" href="index.html" data-lang-key="title">MACE风险预测系统</a>  
         <button class="navbar-toggler py-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link px-2 py-1" href="basic.html">基础模型</a>  
+                    <a class="nav-link px-2 py-1" href="basic.html" data-lang-key="navBasic">基础</a>  
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-2 py-1" href="glu.html">血糖模型</a>
+                    <a class="nav-link px-2 py-1" href="glu.html" data-lang-key="navBloodSugar">血糖</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-2 py-1" href="omi.html">组学模型</a>
+                    <a class="nav-link px-2 py-1" href="omi.html" data-lang-key="navOmics">组学</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-2 py-1" href="index.html">返回首页</a>
+                    <a class="nav-link px-2 py-1" href="index.html" data-lang-key="navHome">首页</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>    <div class="container">
-        <h2 class="mb-4">基础预测模型</h2>
+        <h2 class="mb-4" data-lang-key="basicPageTitle">基础预测模型</h2>
         <div class="card shadow">
             <div class="card-body">
                 <!-- 输入区域 -->
                 <div class="input-group mb-3">
-                    <span class="input-group-text" data-bs-toggle="tooltip" title="范围：0-700">钙化成分体积</span>
-                    <input type="number" id="calcVol" class="form-control" step="1" placeholder="请输入钙化成分体积">
+                    <span class="input-group-text" data-bs-toggle="tooltip" data-lang-title="tooltipCalcVolume" data-lang-key="calcVolume">钙化成分体积</span>
+                    <input type="number" id="calcVol" class="form-control" step="1" data-field-key="calcVolume" placeholder="请输入钙化成分体积">
                 </div>
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text" data-bs-toggle="tooltip" title="范围：0.0-1.0">狭窄程度</span>
-                    <input type="number" id="stenosis" class="form-control" step="0.1" placeholder="请输入狭窄程度">
+                    <span class="input-group-text" data-bs-toggle="tooltip" data-lang-title="tooltipStenosisDegree" data-lang-key="stenosisDegree">狭窄程度</span>
+                    <input type="number" id="stenosis" class="form-control" step="0.1" data-field-key="stenosisDegree" placeholder="请输入狭窄程度">
                 </div>
 
                 <div class="input-group mb-4">
-                    <span class="input-group-text" data-bs-toggle="tooltip" title="范围：-115至-60">责任血管FAI</span>
-                    <input type="number" id="fai" class="form-control" step="1" placeholder="请输入责任血管FAI">
+                    <span class="input-group-text" data-bs-toggle="tooltip" data-lang-title="tooltipFaiValue" data-lang-key="faiValue">责任血管FAI</span>
+                    <input type="number" id="fai" class="form-control" step="1" data-field-key="faiValue" placeholder="请输入责任血管FAI">
                 </div>
 
-                <button class="btn btn-outline-secondary w-100" onclick="toggleLogic()">显示计算逻辑</button>
+                <button class="btn btn-outline-secondary w-100" onclick="toggleLogic()" data-lang-key="toggleLogic">显示计算逻辑</button>
                 
                 <!-- 结果展示 -->
                 <div class="result-card">
-                    <div>钙化成分体积得分: <span id="score1" class="highlight" data-bs-toggle="tooltip">0</span> 分</div>
-                    <div>狭窄程度得分: <span id="score2" class="highlight" data-bs-toggle="tooltip">0</span> 分</div>
-                    <div>责任血管FAI得分: <span id="score3" class="highlight" data-bs-toggle="tooltip">0</span> 分</div>
+                    <div><span data-lang-key="calcVolScore">钙化成分体积得分</span>: <span id="score1" class="highlight" data-bs-toggle="tooltip">0</span> <span data-lang-key="points">分</span></div>
+                    <div><span data-lang-key="stenosisScore">狭窄程度得分</span>: <span id="score2" class="highlight" data-bs-toggle="tooltip">0</span> <span data-lang-key="points">分</span></div>
+                    <div><span data-lang-key="faiScore">责任血管FAI得分</span>: <span id="score3" class="highlight" data-bs-toggle="tooltip">0</span> <span data-lang-key="points">分</span></div>
                     <hr>
-                    <div>总分数: <span id="total" class="highlight" data-bs-toggle="tooltip">0</span> 分</div>
-                    <div>线性预测值: <span id="lp" class="highlight" data-bs-toggle="tooltip">0.0000</span></div>
-                    <div>风险概率: <span id="risk" class="highlight" data-bs-toggle="tooltip">0.00</span>%</div>
+                    <div><span data-lang-key="totalScore">总分数</span>: <span id="total" class="highlight" data-bs-toggle="tooltip">0</span> <span data-lang-key="points">分</span></div>
+                    <div><span data-lang-key="linearPrediction">线性预测值</span>: <span id="lp" class="highlight" data-bs-toggle="tooltip">0.0000</span></div>
+                    <div><span data-lang-key="riskProbability">风险概率</span>: <span id="risk" class="highlight" data-bs-toggle="tooltip">0.00</span>%</div>
                 </div>
 
                 <!-- 计算逻辑说明 -->
                 <div class="calc-logic" id="logicCard">
                     <div class="md-content">
-                        <h4 class="logic-title">计算逻辑说明</h4>
-                        <h5>1. 变量得分计算</h5>
+                        <h4 class="logic-title" data-lang-key="calcLogicTitle">计算逻辑说明</h4>
+                        <h5 data-lang-key="variableScoreCalc">1. 变量得分计算</h5>
                         <ul>
-                            <li>基于预设列线图进行线性插值</li>
-                            <li>示例：钙化体积=200 → 查表得26分</li>
+                            <li data-lang-key="linearInterpolation">基于预设列线图进行线性插值</li>
+                            <li data-lang-key="logicExample1">示例：钙化体积=200 → 查表得26分</li>
                         </ul>
 
-                        <h5>2. 预测值计算</h5>
-                        <p>线性预测值公式：</p>
-                        <p><code>LP = 5.2411 + (钙化体积×0.006667) + (狭窄程度×2.4757) + (FAI×0.091687)</code></p>
+                        <h5 data-lang-key="linearPredictionFormula">2. 预测值计算</h5>
+                        <p data-lang-key="lpFormula">线性预测值公式：</p>
+                        <p><code data-lang-key="basicFormula">LP = 5.2411 + (钙化体积×0.006667) + (狭窄程度×2.4757) + (FAI×0.091687)</code></p>
 
-                        <h5>3. 风险概率计算</h5>
-                        <p>逻辑函数转换：</p>
-                        <p><code>风险 = 1 / (1 + e<sup>-LP</sup>) × 100%</code></p>
+                        <h5 data-lang-key="riskProbabilityFormula">3. 风险概率计算</h5>
+                        <p data-lang-key="logicFunction">逻辑函数转换：</p>
+                        <p data-lang-key="riskFormula">风险 = 1 / (1 + e<sup>-LP</sup>) × 100%</p>
 
-                        <h5>模型系数</h5>
+                        <h5 data-lang-key="modelCoefficients">模型系数</h5>
                         <table class="table table-bordered">
-                            <tr><th>参数</th><th>值</th></tr>
-                            <tr><td>截距</td><td>5.2411</td></tr>
-                            <tr><td>钙化成分体积</td><td>0.006667</td></tr>
-                            <tr><td>狭窄程度</td><td>2.4757</td></tr>
-                            <tr><td>责任血管FAI</td><td>0.091687</td></tr>
+                            <tr><th data-lang-key="parameter">参数</th><th data-lang-key="value">值</th></tr>
+                            <tr><td data-lang-key="intercept">截距</td><td>5.2411</td></tr>
+                            <tr><td data-lang-key="calcVolume">钙化成分体积</td><td>0.006667</td></tr>
+                            <tr><td data-lang-key="stenosisDegree">狭窄程度</td><td>2.4757</td></tr>
+                            <tr><td data-lang-key="faiValue">责任血管FAI</td><td>0.091687</td></tr>
                         </table>
 
-                        <button class="btn btn-outline-secondary close-btn" onclick="toggleLogic()">关闭说明</button>
+                        <button class="btn btn-outline-secondary close-btn" onclick="toggleLogic()" data-lang-key="closeLogic">关闭说明</button>
                     </div>
                 </div>
             </div>
@@ -246,14 +248,18 @@ function updateResults() {
     const stenosis = getValidValue('stenosis');
     const fai = getValidValue('fai');
 
+    // 获取语言
+    const userLang = localStorage.getItem("language") || "zh";
+    const errorText = languageData[userLang].invalidInput || "请输入患者全部信息";
+
     // 更新各维度得分
-    updateScoreDisplay('score1', scoreMaps.calcVol, calcVol, '钙化成分体积');
-    updateScoreDisplay('score2', scoreMaps.stenosis, stenosis, '狭窄程度');
-    updateScoreDisplay('score3', scoreMaps.fai, fai, '责任血管FAI');
+    updateScoreDisplay('score1', scoreMaps.calcVol, calcVol, languageData[userLang].calcVolume || '钙化成分体积');
+    updateScoreDisplay('score2', scoreMaps.stenosis, stenosis, languageData[userLang].stenosisDegree || '狭窄程度');
+    updateScoreDisplay('score3', scoreMaps.fai, fai, languageData[userLang].faiValue || '责任血管FAI');
 
     // 更新最终结果
     const allValid = [calcVol, stenosis, fai].every(v => !isNaN(v));
-    updateFinalResults(allValid, calcVol, stenosis, fai);
+    updateFinalResults(allValid, calcVol, stenosis, fai, errorText);
 }
 
 function updateScoreDisplay(elementId, scoreMap, value, fieldName) {
@@ -268,14 +274,17 @@ function updateScoreDisplay(elementId, scoreMap, value, fieldName) {
         element.textContent = score.toFixed(0);
     } else {
         element.textContent = '--';
+        const userLang = localStorage.getItem("language") || "zh";
+        const dataWord = languageData[userLang].dataWord || "数据";
+        const errorMsg = `${languageData[userLang].inputPlaceholder || "请输入"}${fieldName} ${dataWord}`;
         new bootstrap.Tooltip(element, {
-            title: `请输入患者${fieldName}数据`,
+            title: errorMsg,
             customClass: 'red-tooltip'
         });
     }
 }
 
-function updateFinalResults(allValid, calcVol, stenosis, fai) {
+function updateFinalResults(allValid, calcVol, stenosis, fai, errorText) {
     const elements = ['total', 'lp', 'risk'];
     
     elements.forEach(id => {
@@ -307,7 +316,7 @@ function updateFinalResults(allValid, calcVol, stenosis, fai) {
         } else {
             el.textContent = '--';
             new bootstrap.Tooltip(el, {
-                title: '请输入患者全部信息',
+                title: errorText,
                 customClass: 'red-tooltip'
             });
         }
@@ -325,8 +334,12 @@ document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', updateResults);
 });
 
-// 初始计算
-updateResults();
+// 初始加载语言
+document.addEventListener("DOMContentLoaded", () => {
+    const userLang = localStorage.getItem("language") || "zh";
+    setLanguage(userLang);
+    updateResults();
+});
 </script>
 </body>
 </html>
