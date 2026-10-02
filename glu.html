@@ -310,11 +310,11 @@ function updateFinalResults(allValid, calcVol, stenosis, fai, bloodSugar, errorT
         
         if (allValid) {
             if (id === 'total') {
-                const total = findScore(scoreMaps.calcVol, calcVol) +
-                             findScore(scoreMaps.stenosis, stenosis) +
-                             findScore(scoreMaps.fai, fai) +
-                             findScore(scoreMaps.bloodSugar, bloodSugar);
-                el.textContent = total.toFixed(0);
+				const total = ['score1', 'score2', 'score3', 'score4']
+				    .reduce((sum, scoreId) =>
+				        sum + Number(document.getElementById(scoreId).textContent), 0);
+				
+				el.textContent = total.toFixed(0);
             } else if (id === 'lp') {
                 const lp = coefficients.intercept + 
                           coefficients.calcVol * calcVol +
